@@ -1,6 +1,7 @@
 package br.com.agat.model;
 
 import br.com.agat.dto.request.PhoneRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,11 @@ public class Phone {
 
     @Column(name = "telephone", length = 13)
     private String telephone;
+
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 
     public Phone (Integer id) {
 

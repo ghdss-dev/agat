@@ -1,6 +1,7 @@
 package br.com.agat.model;
 
 import br.com.agat.dto.request.AddressRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import org.springframework.beans.BeanUtils;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "endereco")
+@Table(name = "address")
 public class Address {
 
     @Id
@@ -35,14 +36,19 @@ public class Address {
     @Column(name = "number", length = 10)
     private Integer number;
 
-    @Column(name = "zip_code", length = 10)
-    private String zip_code;
+    @Column(name = "zipCode", length = 10)
+    private String zipCode;
 
     @Column(name = "latitude", length = 50)
     private Double latitude;
 
     @Column(name = "longitude", length = 50)
     private Double longitude;
+
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public static Address of(AddressRequest request) {
 

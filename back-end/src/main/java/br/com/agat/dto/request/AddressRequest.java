@@ -10,7 +10,8 @@ public class AddressRequest {
     private String neighborhood;
     private String address;
     private Integer number;
-    private String zip_code;
+    private String zipCode;
     private Double latitude;
     private Double longitude;
+    private Integer userId;
 }
